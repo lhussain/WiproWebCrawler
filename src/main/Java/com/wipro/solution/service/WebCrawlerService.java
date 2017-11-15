@@ -1,5 +1,6 @@
 package com.wipro.solution.service;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -30,6 +31,10 @@ public class WebCrawlerService {
                     linksList.add(link);
                 }
             }
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonInString = mapper.writeValueAsString(linksList);
+            System.out.println(jsonInString);
+
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "an error occurred for domain: " + domain, e);
         }
