@@ -43,7 +43,7 @@ public class WebCrawlerServiceTest {
         when(connection.get()).thenReturn(document);
 
         // when
-        List<String> response = fixture.crawlPageLinks(domain);
+        List<String> response = fixture.getPageLinks(domain);
 
         // then
         assertThat(response.size(), is(1));

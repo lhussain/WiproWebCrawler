@@ -20,7 +20,7 @@ public class WebCrawlerService {
     private static final String URL_PREFIX = "http://www.";
     private static final String DEFAULT_DOMAIN = "bbc.co.uk";
 
-    public List<String> crawlPageLinks(String domain) {
+    public List<String> getPageLinks(String domain) {
         List<String> linksList = new ArrayList<>();
         try {
             String url = URL_PREFIX + domain;
@@ -44,7 +44,7 @@ public class WebCrawlerService {
         if (args != null && args.length > 0) {
             localDomain = args[0];
         }
-        List<String> linksList = new WebCrawlerService().crawlPageLinks(localDomain);
+        List<String> linksList = new WebCrawlerService().getPageLinks(localDomain);
         WebCrawlerMapper mapper = new WebCrawlerMapper();
         String jsonAstString = mapper.mapToJson(linksList);
         Files.write(Paths.get("./domainLinks.json"), jsonAstString.getBytes());
