@@ -5,8 +5,6 @@ applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
 
 sourceCompatibility = 1.8
 
-mainClassName = "com.wipro.solution.service.WebCrawlerService"
-
 repositories {
     jcenter()
 }
