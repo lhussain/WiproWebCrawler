@@ -14,6 +14,8 @@ import java.util.logging.Level;
 public class WebCrawlerService {
     private static final Logger LOGGER = Logger.getLogger(WebCrawlerService.class.getName());
     private static final String URL_PREFIX = "http://www.";
+    private static final String DEFAULT_DOMAIN = "wiprodigital.com";
+
 
     public List<String> crawlPageLinks(String domain) {
         List<String> linksList = new ArrayList<>();
@@ -35,7 +37,11 @@ public class WebCrawlerService {
     }
 
     public static void main(String[] args) {
-        List<String> linksList = new WebCrawlerService().crawlPageLinks("bbc.co.uk");
+        String localDomain = DEFAULT_DOMAIN;
+        if (args != null && args.length > 0) {
+            localDomain = args[0];
+        }
+        List<String> linksList = new WebCrawlerService().crawlPageLinks(localDomain);
         linksList.forEach(link ->  System.out.println(link));
     }
 }
