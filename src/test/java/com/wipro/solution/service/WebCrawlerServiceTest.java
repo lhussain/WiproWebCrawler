@@ -33,18 +33,19 @@ public class WebCrawlerServiceTest {
         fixture = new WebCrawlerService();
     }
 
-    @Test()
+    @Test
     public void testDomainHasOneLink() throws Exception {
+        // given
         String domain = "dummy.com";
-
         Connection connection = mock(Connection.class);
-
         mockStatic(Jsoup.class);
         when(Jsoup.connect(Mockito.anyString())).thenReturn(connection);
         when(connection.get()).thenReturn(document);
 
+        // when
         List<String> response = fixture.crawlPageLinks(domain);
 
+        // then
         assertThat(response.size(), is(1));
     }
 }
