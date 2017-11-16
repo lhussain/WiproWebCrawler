@@ -14,7 +14,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -28,13 +30,16 @@ public class WebCrawlerServiceTest {
     @Before
     public void setUp() {
         String html = "<html><head><title>First parse</title></head>"
-                + "<body><a href='www.dummy.com/test1.html'>Visit our HTML tutorial</a></body></html>";
+                + "<body>" +
+                "<a href='www.dummy.com/test1.html'>valid dummy link </a>" +
+                "<a href='www.facebook.com/test2.html'>invalid dummy</a></body>" +
+                "</body></html>";
         document = Jsoup.parse(html);
         fixture = new WebCrawlerService();
     }
 
     @Test
-    public void testDomainHasOneLink() throws Exception {
+    public void testDomainHasOneValidLink() throws Exception {
         // given
         String domain = "dummy.com";
         Connection connection = mock(Connection.class);
@@ -47,5 +52,7 @@ public class WebCrawlerServiceTest {
 
         // then
         assertThat(response.size(), is(1));
+        assertFalse(response.get(0).contains("facebook.com"));
+        assertTrue(response.get(0).contains("dummy.com"));
     }
 }
