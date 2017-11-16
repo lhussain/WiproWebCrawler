@@ -15,6 +15,8 @@ Assumptions:  the exercise is relatively simple therefore deliberately chose not
 
 Possible improvements: could perhaps write more tests to see that the external links have not been included.
 
+Additional improvements and assumptions:  Can iterate over the list and for each link found, could go down into the next level and fetch all the sub-links (inc. images...etc).  In doing so web crawler could run for a while so decided against it.  To do that is simple enough enhancement (refactor) to existing codebase to achieve this if desired.
+
 Output from wiprodigital.com:
 
 {
